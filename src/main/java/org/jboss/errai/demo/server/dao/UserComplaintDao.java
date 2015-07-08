@@ -1,4 +1,4 @@
-package org.jboss.errai.demo.server;
+package org.jboss.errai.demo.server.dao;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.jboss.errai.demo.client.shared.UserComplaint;
+import org.jboss.errai.demo.client.shared.model.UserComplaint;
 import org.jboss.errai.jpa.sync.client.shared.DataSyncService;
 import org.jboss.errai.jpa.sync.client.shared.JpaAttributeAccessor;
 import org.jboss.errai.jpa.sync.client.shared.SyncRequestOperation;
@@ -23,7 +23,7 @@ import org.jboss.errai.jpa.sync.server.JavaReflectionAttributeAccessor;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class UserComplaintService {
+public class UserComplaintDao {
 
   /**
    * A JPA EntityManager which is configured according to the

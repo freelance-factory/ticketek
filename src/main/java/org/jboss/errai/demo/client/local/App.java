@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.jboss.errai.common.client.api.RemoteCallback;
-import org.jboss.errai.demo.client.shared.UserComplaint;
+import org.jboss.errai.demo.client.shared.model.UserComplaint;
 import org.jboss.errai.enterprise.client.jaxrs.api.RestClient;
 import org.jboss.errai.ioc.client.api.EntryPoint;
 import org.jboss.errai.jpa.sync.client.local.ClientSyncManager;
