@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://xmlns.jcp.org/xml/ns/javaee">
 
+  <scan>
+    <!-- These exclusions were added by Errai to avoid deploying client-side classes to the server -->
+    <exclude name = "org.jboss.errai.demo.client.local.Admin$1" />
+    <exclude name = "org.jboss.errai.demo.client.local.Admin" />
+    <exclude name = "org.jboss.errai.demo.client.local.App$1" />
+    <exclude name = "org.jboss.errai.demo.client.local.App" />
+    <exclude name = "org.jboss.errai.demo.client.local.ComplaintForm$1" />
+    <exclude name = "org.jboss.errai.demo.client.local.ComplaintForm$2" />
+    <exclude name = "org.jboss.errai.demo.client.local.ComplaintForm" />
+    <exclude name = "org.jboss.errai.demo.client.local.ComplaintListItemWidget$1" />
+    <exclude name = "org.jboss.errai.demo.client.local.ComplaintListItemWidget" />
+    <exclude name = "org.jboss.errai.demo.client.local.ComplaintSubmitted" />
+    <exclude name = "org.jboss.errai.demo.client.local.Config" />
+    <!-- End of Errai exclusions -->
+  </scan>
 </beans>
