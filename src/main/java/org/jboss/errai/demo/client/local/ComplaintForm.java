@@ -2,6 +2,7 @@ package org.jboss.errai.demo.client.local;
 
 import javax.inject.Inject;
 
+import com.google.gwt.user.client.ui.*;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.jboss.errai.demo.client.shared.model.UserComplaint;
@@ -17,10 +18,6 @@ import org.jboss.errai.ui.shared.api.annotations.Templated;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 import com.googlecode.gwtphonegap.client.camera.Camera;
 import com.googlecode.gwtphonegap.client.camera.PictureCallback;
 import com.googlecode.gwtphonegap.client.camera.PictureOptions;
@@ -100,7 +97,6 @@ public class ComplaintForm extends Composite {
     @EventHandler("submit")
     private void onSubmit(ClickEvent e) {
         // Execute the REST call to store the complaint on the server
-
         testService.call(new RemoteCallback<String>() {
             @Override
             public void callback(String response) {
