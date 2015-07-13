@@ -70,6 +70,11 @@ public class ComplaintForm extends Composite {
     private ValueImage image;
 
     @Inject
+    @Bound
+    @DataField
+    private FlexTable table = new FlexTable();
+
+    @Inject
     @DataField
     private Button submit;
 
@@ -100,7 +105,7 @@ public class ComplaintForm extends Composite {
         testService.call(new RemoteCallback<String>() {
             @Override
             public void callback(String response) {
-                Window.alert(response);
+                table.setWidget(0,0, new Label("Hola"));
             }
         }).test();
     }
