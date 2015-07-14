@@ -21,7 +21,7 @@ import org.jboss.errai.databinding.client.api.Bindable;
 @Entity
 @Bindable
 @Portable
-@NamedQueries({ @NamedQuery(name = "allComplaints", query = "SELECT c FROM UserComplaint c ORDER BY c.id") })
+@NamedQueries({ @NamedQuery(name = "allComplaints", query = "SELECT c FROM UserComplaint  c ORDER BY c.id") })
 public class UserComplaint {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
