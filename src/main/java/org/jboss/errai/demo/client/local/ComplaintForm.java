@@ -1,5 +1,6 @@
 package org.jboss.errai.demo.client.local;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.google.gwt.user.client.ui.*;
@@ -81,7 +82,7 @@ public class ComplaintForm extends Composite {
     @Inject
     private Caller<TestService> testService;
 
-    private int i = 0;
+    private int i = 1;
 
     /**
      * Errai's Cordova integration module makes native device hardware injectable
@@ -106,6 +107,9 @@ public class ComplaintForm extends Composite {
         testService.call(new RemoteCallback<String>() {
             @Override
             public void callback(String response) {
+                table.setWidget(0,0,new Label ("Name"));
+                table.setWidget(0,1,new Label ("Email"));
+                table.setWidget(0,2,new Label ("Complaint"));
                 table.setWidget(i, 0, new Label(name.getText()));
                 table.setWidget(i, 1, new Label(email.getText()));
                 table.setWidget(i, 2, new Label(text.getText()));
