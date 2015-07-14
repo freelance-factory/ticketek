@@ -70,7 +70,6 @@ public class ComplaintForm extends Composite {
     private ValueImage image;
 
     @Inject
-    @Bound
     @DataField
     private FlexTable table = new FlexTable();
 
