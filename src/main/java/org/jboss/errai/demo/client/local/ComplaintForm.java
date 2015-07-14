@@ -81,6 +81,8 @@ public class ComplaintForm extends Composite {
     @Inject
     private Caller<TestService> testService;
 
+    private int i = 0;
+
     /**
      * Errai's Cordova integration module makes native device hardware injectable
      * into your code.
@@ -104,7 +106,10 @@ public class ComplaintForm extends Composite {
         testService.call(new RemoteCallback<String>() {
             @Override
             public void callback(String response) {
-                table.setWidget(0,0, new Label("Hola"));
+                table.setWidget(i, 0, new Label(name.getText()));
+                table.setWidget(i, 1, new Label(email.getText()));
+                table.setWidget(i, 2, new Label(text.getText()));
+                i++;
             }
         }).test();
     }
