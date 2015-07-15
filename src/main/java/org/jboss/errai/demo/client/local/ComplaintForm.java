@@ -23,6 +23,8 @@ import com.googlecode.gwtphonegap.client.camera.Camera;
 import com.googlecode.gwtphonegap.client.camera.PictureCallback;
 import com.googlecode.gwtphonegap.client.camera.PictureOptions;
 
+import java.util.ArrayList;
+
 /**
  * This is the companion Java class of the complaint form as specified by
  * {@link Templated}. It refers to a data field called "app-template" in
@@ -104,18 +106,18 @@ public class ComplaintForm extends Composite {
     @EventHandler("submit")
     private void onSubmit(ClickEvent e) {
         // Execute the REST call to store the complaint on the server
-        testService.call(new RemoteCallback<String>() {
+        testService.call(new RemoteCallback<ArrayList<String>>() {
             @Override
-            public void callback(String response) {
+            public void callback(ArrayList<String> response) {
                 table.setWidget(0,0,new Label ("Name"));
                 table.setWidget(0,1,new Label ("Email"));
                 table.setWidget(0,2,new Label ("Complaint"));
-                table.setWidget(i, 0, new Label(name.getText()));
-                table.setWidget(i, 1, new Label(email.getText()));
-                table.setWidget(i, 2, new Label(text.getText()));
+                table.setWidget(i, 0, new Label(response.get(0)));
+                table.setWidget(i, 1, new Label(response.get(1)));
+                table.setWidget(i, 2, new Label(response.get(2)));
                 i++;
             }
-        }).test();
+        }).test(name.getText(),email.getText(),text.getText());
     }
 
     /**
