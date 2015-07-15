@@ -2,6 +2,8 @@ package org.jboss.errai.demo.client.shared.service;
 
 import org.jboss.errai.bus.server.annotations.Remote;
 
+import java.util.List;
+
 /**
  * This JAX-RS resource interface is used on both the client and the server. On
  * the server, it is implemented to expose the described resource methods as
@@ -11,5 +13,5 @@ import org.jboss.errai.bus.server.annotations.Remote;
  */
 @Remote
 public interface TestService {
-    public String test();
+    public List<String> test(String name, String email, String text);
 }
