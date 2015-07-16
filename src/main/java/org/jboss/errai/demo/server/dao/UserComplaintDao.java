@@ -40,8 +40,9 @@ public class UserComplaintDao {
    * @param entity The UserComplaint instance to store.
    * @throws EntityExistsException If the given UserComplaint is already in the database.
    */
-  public void create(UserComplaint entity) {
+  public Long create(UserComplaint entity) {
     em.persist(entity);
+    return entity.getId();
   }
 
   /**

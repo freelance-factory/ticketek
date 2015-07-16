@@ -109,12 +109,13 @@ public class ComplaintForm extends Composite {
         testService.call(new RemoteCallback<ArrayList<String>>() {
             @Override
             public void callback(ArrayList<String> response) {
-                table.setWidget(0,0,new Label ("Name"));
-                table.setWidget(0,1,new Label ("Email"));
-                table.setWidget(0,2,new Label ("Complaint"));
-                table.setWidget(i, 0, new Label(response.get(0)));
-                table.setWidget(i, 1, new Label(response.get(1)));
-                table.setWidget(i, 2, new Label(response.get(2)));
+                table.setWidget(0,0,new Label ("Id"));
+                table.setWidget(0,1,new Label ("Name"));
+                table.setWidget(0,2,new Label ("Email"));
+                table.setWidget(0,3, new Label("Complaint"));
+                table.setWidget(i, 1, new Label(response.get(0)));
+                table.setWidget(i, 2, new Label(response.get(1)));
+                table.setWidget(i, 3, new Label(response.get(2)));
                 i++;
             }
         }).test(name.getText(),email.getText(),text.getText());
