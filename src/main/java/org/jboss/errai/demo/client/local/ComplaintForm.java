@@ -97,6 +97,11 @@ public class ComplaintForm extends Composite {
     @DataField
     private Button takePicture;
 
+    @Inject
+    private int id = 0;
+
+
+
     /**
      * This method is registered as an event handler for click events on the
      * submit button of the complaint form.

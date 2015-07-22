@@ -8,6 +8,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.jboss.errai.demo.client.shared.model.UserComplaint;
 import org.jboss.errai.jpa.sync.client.shared.DataSyncService;
@@ -82,6 +83,20 @@ public class UserComplaintDao {
     return em.find(UserComplaint.class, id);
   }
 
+  public UserComplaint save(Long id, String name, String email, String text) {
+    UserComplaint entity = new UserComplaint();
+    entity.setId(id);
+    entity.setName(name);
+    entity.setEmail(email);
+    entity.setText(text);
+    return entity;
+  }
+
+  public List<UserComplaint> getAll() {
+    TypedQuery<UserComplaint> query = em.createNamedQuery("allComplaints", UserComplaint.class);
+    return query.getResultList();
+  }
+
   /**
    * Passes a data sync operation on the given data set to the server-side of
    * the Errai DataSync system.
@@ -98,9 +113,4 @@ public class UserComplaintDao {
    * @return A list of sync response operations that ClientSyncManager needs to
    *         perform to synchronize the client data with the server data.
    */
-  public <X> List<SyncResponse<X>> sync(SyncableDataSet<X> dataSet, List<SyncRequestOperation<X>> remoteResults) {
-    JpaAttributeAccessor attributeAccessor = new JavaReflectionAttributeAccessor();
-    DataSyncService dss = new org.jboss.errai.jpa.sync.server.DataSyncServiceImpl(em, attributeAccessor);
-    return dss.coldSync(dataSet, remoteResults);
-  }
 }
