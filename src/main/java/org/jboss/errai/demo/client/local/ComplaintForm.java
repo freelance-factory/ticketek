@@ -1,9 +1,7 @@
 package org.jboss.errai.demo.client.local;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import com.google.gwt.user.client.ui.*;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.jboss.errai.demo.client.shared.model.UserComplaint;
@@ -19,11 +17,14 @@ import org.jboss.errai.ui.shared.api.annotations.Templated;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.TextBox;
 import com.googlecode.gwtphonegap.client.camera.Camera;
 import com.googlecode.gwtphonegap.client.camera.PictureCallback;
 import com.googlecode.gwtphonegap.client.camera.PictureOptions;
-
-import java.util.ArrayList;
 
 /**
  * This is the companion Java class of the complaint form as specified by
@@ -97,8 +98,8 @@ public class ComplaintForm extends Composite {
     @DataField
     private Button takePicture;
 
-    @Inject
-    private int id = 0;
+//    @Inject
+//    private long id = 0;
 
 
 
@@ -111,20 +112,33 @@ public class ComplaintForm extends Composite {
     @EventHandler("submit")
     private void onSubmit(ClickEvent e) {
         // Execute the REST call to store the complaint on the server
-        testService.call(new RemoteCallback<ArrayList<String>>() {
+//        userComplaint.setId(id);
+        userComplaint.setName(String.valueOf(name));
+        userComplaint.setEmail(String.valueOf(email));
+        userComplaint.setText(String.valueOf(text));
+        testService.call(new RemoteCallback<Long>() {
             @Override
-            public void callback(ArrayList<String> response) {
-                table.setWidget(0,0,new Label ("Id"));
-                table.setWidget(0,1,new Label ("Name"));
-                table.setWidget(0,2,new Label ("Email"));
-                table.setWidget(0,3, new Label("Complaint"));
-                table.setWidget(i, 1, new Label(response.get(0)));
-                table.setWidget(i, 2, new Label(response.get(1)));
-                table.setWidget(i, 3, new Label(response.get(2)));
-                i++;
+            public void callback(final Long id) {
+                for (int j = 0; j < id; j++) {
+                }
             }
-        }).test(name.getText(),email.getText(),text.getText());
-    }
+        }).save(userComplaint);
+
+        }
+//        testService.call(new RemoteCallback<ArrayList<String>>() {
+//            @Override
+//            public void callback(ArrayList<String> response) {
+//                table.setWidget(0,0, new Label ("Id"));
+//                table.setWidget(0,1, new Label ("Name"));
+//                table.setWidget(0,2, new Label ("Email"));
+//                table.setWidget(0,3, new Label("Complaint"));
+//                table.setWidget(i,1, new Label(response.get(0)));
+//                table.setWidget(i,2, new Label(response.get(1)));
+//                table.setWidget(i,3, new Label(response.get(2)));
+//                i++;
+//            }
+//        }).test(name.getText(), email.getText(), text.getText());
+//    }
 
     /**
      * This method is registered as an event handler for click events on the

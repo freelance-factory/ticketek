@@ -1,8 +1,9 @@
 package org.jboss.errai.demo.client.shared.service;
 
-import org.jboss.errai.bus.server.annotations.Remote;
-
 import java.util.List;
+
+import org.jboss.errai.bus.server.annotations.Remote;
+import org.jboss.errai.demo.client.shared.model.UserComplaint;
 
 /**
  * This JAX-RS resource interface is used on both the client and the server. On
@@ -13,5 +14,7 @@ import java.util.List;
  */
 @Remote
 public interface TestService {
-    public List<String> test(String name, String email, String text);
+    public List<UserComplaint> getTableInfo();
+    public Long save(UserComplaint userComplaint);
+    public UserComplaint getUser(Long id);
 }

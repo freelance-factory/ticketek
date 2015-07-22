@@ -83,15 +83,6 @@ public class UserComplaintDao {
     return em.find(UserComplaint.class, id);
   }
 
-  public UserComplaint save(Long id, String name, String email, String text) {
-    UserComplaint entity = new UserComplaint();
-    entity.setId(id);
-    entity.setName(name);
-    entity.setEmail(email);
-    entity.setText(text);
-    return entity;
-  }
-
   public List<UserComplaint> getAll() {
     TypedQuery<UserComplaint> query = em.createNamedQuery("allComplaints", UserComplaint.class);
     return query.getResultList();
