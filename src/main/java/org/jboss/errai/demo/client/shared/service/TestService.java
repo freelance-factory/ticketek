@@ -16,4 +16,5 @@ import org.jboss.errai.demo.client.shared.model.UserComplaint;
 public interface TestService {
     public List<UserComplaint> getTableInfo();
     public void save(UserComplaint userComplaint);
+    public void delete(Long id);
 }

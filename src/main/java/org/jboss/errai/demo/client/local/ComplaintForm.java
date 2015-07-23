@@ -18,6 +18,7 @@ import org.jboss.errai.ui.shared.api.annotations.Model;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -130,11 +131,29 @@ public class ComplaintForm extends Composite {
                         table.setWidget(0,1, new Label("Name"));
                         table.setWidget(0,2, new Label("Email"));
                         table.setWidget(0,3, new Label("Complaint"));
-                        for (int j = 0; j < userComplaints.size(); j++) {
-                            table.setWidget(j+1,0, new Label(userComplaints.get(j).getId().toString()));
-                            table.setWidget(j+1,1, new Label(userComplaints.get(j).getName()));
-                            table.setWidget(j+1,2, new Label(userComplaints.get(j).getEmail()));
-                            table.setWidget(j+1,3, new Label(userComplaints.get(j).getText()));
+                        int j = 0;
+                        for (final UserComplaint complaint : userComplaints) {
+                            Button edit = new Button("Edit");
+                            edit.addClickHandler(new ClickHandler() {
+                                @Override
+                                public void onClick(ClickEvent clickEvent) {
+                                    Window.alert("Hola");
+                                }
+                            });
+                            Button delete = new Button("Delete");
+                            delete.addClickHandler(new ClickHandler() {
+                                @Override
+                                public void onClick(ClickEvent clickEvent) {
+                                    testService.call().delete(complaint.getId());
+                                }
+                            });
+                            table.setWidget(j + 1, 0, new Label(complaint.getId().toString()));
+                            table.setWidget(j+1,1, new Label(complaint.getName()));
+                            table.setWidget(j+1,2, new Label(complaint.getEmail()));
+                            table.setWidget(j+1,3, new Label(complaint.getText()));
+                            table.setWidget(j+1,4, edit);
+                            table.setWidget(j+1,5, delete);
+                            j++;
                         }
                     }
                 }).getTableInfo();
@@ -164,6 +183,7 @@ public class ComplaintForm extends Composite {
      *
      * @param e the click event.
      */
+
     @EventHandler("takePicture")
     private void onTakePictureClick(ClickEvent e) {
         PictureOptions options = new PictureOptions(25);

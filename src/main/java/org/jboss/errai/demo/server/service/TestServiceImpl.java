@@ -24,4 +24,9 @@ public class TestServiceImpl implements TestService{
     public void save(UserComplaint userComplaint) {
         userComplaintDao.create(userComplaint);
     }
+
+    @Override
+    public void delete(Long id) {
+        userComplaintDao.delete(id);
+    }
 }
