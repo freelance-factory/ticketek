@@ -22,6 +22,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.googlecode.gwtphonegap.client.camera.Camera;
@@ -124,7 +125,17 @@ public class ComplaintForm extends Composite {
                 testService.call(new RemoteCallback<List<UserComplaint>>() {
                     @Override
                     public void callback(List<UserComplaint> userComplaints) {
-                        System.out.println( "Hola" + userComplaints.get(0).toString());
+//                        System.out.println( "Hola" + userComplaints.get(0).toString());
+                        table.setWidget(0,0, new Label("Id"));
+                        table.setWidget(0,1, new Label("Name"));
+                        table.setWidget(0,2, new Label("Email"));
+                        table.setWidget(0,3, new Label("Complaint"));
+                        for (int j = 0; j < userComplaints.size(); j++) {
+                            table.setWidget(j+1,0, new Label(userComplaints.get(j).getId().toString()));
+                            table.setWidget(j+1,1, new Label(userComplaints.get(j).getName()));
+                            table.setWidget(j+1,2, new Label(userComplaints.get(j).getEmail()));
+                            table.setWidget(j+1,3, new Label(userComplaints.get(j).getText()));
+                        }
                     }
                 }).getTableInfo();
             }
