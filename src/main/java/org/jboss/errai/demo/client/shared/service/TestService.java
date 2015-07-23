@@ -15,6 +15,5 @@ import org.jboss.errai.demo.client.shared.model.UserComplaint;
 @Remote
 public interface TestService {
     public List<UserComplaint> getTableInfo();
-    public Long save(UserComplaint userComplaint);
-    public UserComplaint getUser(Long id);
+    public void save(UserComplaint userComplaint);
 }

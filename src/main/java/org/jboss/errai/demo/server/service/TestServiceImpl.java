@@ -21,12 +21,7 @@ public class TestServiceImpl implements TestService{
     }
 
     @Override
-    public Long save(UserComplaint userComplaint) {
-        return userComplaintDao.create(userComplaint);
-    }
-
-    @Override
-    public UserComplaint getUser(Long id) {
-        return userComplaintDao.getById(id);
+    public void save(UserComplaint userComplaint) {
+        userComplaintDao.create(userComplaint);
     }
 }

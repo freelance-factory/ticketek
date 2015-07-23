@@ -1,5 +1,7 @@
 package org.jboss.errai.demo.client.local;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.jboss.errai.common.client.api.Caller;
@@ -113,18 +115,21 @@ public class ComplaintForm extends Composite {
     private void onSubmit(ClickEvent e) {
         // Execute the REST call to store the complaint on the server
 //        userComplaint.setId(id);
-        userComplaint.setName(String.valueOf(name));
-        userComplaint.setEmail(String.valueOf(email));
-        userComplaint.setText(String.valueOf(text));
-        testService.call(new RemoteCallback<Long>() {
+//        userComplaint.setName(String.valueOf(name));
+//        userComplaint.setEmail(String.valueOf(email));
+//        userComplaint.setText(String.valueOf(text));
+        testService.call(new RemoteCallback<Void>() {
             @Override
-            public void callback(final Long id) {
-                for (int j = 0; j < id; j++) {
-                }
+            public void callback(Void aVoid) {
+                testService.call(new RemoteCallback<List<UserComplaint>>() {
+                    @Override
+                    public void callback(List<UserComplaint> userComplaints) {
+                        System.out.println( "Hola" + userComplaints.get(0).toString());
+                    }
+                }).getTableInfo();
             }
         }).save(userComplaint);
-
-        }
+    }
 //        testService.call(new RemoteCallback<ArrayList<String>>() {
 //            @Override
 //            public void callback(ArrayList<String> response) {
