@@ -102,17 +102,13 @@ public class ComplaintForm extends Composite {
     @DataField
     private Button takePicture;
 
-//    @Inject
-//    private long id = 0;
-
-
-
     /**
      * This method is registered as an event handler for click events on the
      * submit button of the complaint form.
      *
      * @param e the click event.
      */
+
     @EventHandler("submit")
     private void onSubmit(ClickEvent e) {
         testService.call(new RemoteCallback<Void>() {
