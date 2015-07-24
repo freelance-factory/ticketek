@@ -29,4 +29,9 @@ public class TestServiceImpl implements TestService{
     public void delete(Long id) {
         userComplaintDao.delete(id);
     }
+
+    @Override
+    public void update(Long id, UserComplaint userComplaint) {
+        userComplaintDao.update(id,userComplaint);
+    }
 }

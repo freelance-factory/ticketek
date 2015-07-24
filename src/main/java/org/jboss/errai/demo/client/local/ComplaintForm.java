@@ -115,65 +115,57 @@ public class ComplaintForm extends Composite {
      */
     @EventHandler("submit")
     private void onSubmit(ClickEvent e) {
-        // Execute the REST call to store the complaint on the server
-//        userComplaint.setId(id);
-//        userComplaint.setName(String.valueOf(name));
-//        userComplaint.setEmail(String.valueOf(email));
-//        userComplaint.setText(String.valueOf(text));
         testService.call(new RemoteCallback<Void>() {
             @Override
             public void callback(Void aVoid) {
-                testService.call(new RemoteCallback<List<UserComplaint>>() {
-                    @Override
-                    public void callback(List<UserComplaint> userComplaints) {
-//                        System.out.println( "Hola" + userComplaints.get(0).toString());
-                        table.setWidget(0,0, new Label("Id"));
-                        table.setWidget(0,1, new Label("Name"));
-                        table.setWidget(0,2, new Label("Email"));
-                        table.setWidget(0,3, new Label("Complaint"));
-                        int j = 0;
-                        for (final UserComplaint complaint : userComplaints) {
-                            Button edit = new Button("Edit");
-                            edit.addClickHandler(new ClickHandler() {
-                                @Override
-                                public void onClick(ClickEvent clickEvent) {
-                                    Window.alert("Hola");
-                                }
-                            });
-                            Button delete = new Button("Delete");
-                            delete.addClickHandler(new ClickHandler() {
-                                @Override
-                                public void onClick(ClickEvent clickEvent) {
-                                    testService.call().delete(complaint.getId());
-                                }
-                            });
-                            table.setWidget(j + 1, 0, new Label(complaint.getId().toString()));
-                            table.setWidget(j+1,1, new Label(complaint.getName()));
-                            table.setWidget(j+1,2, new Label(complaint.getEmail()));
-                            table.setWidget(j+1,3, new Label(complaint.getText()));
-                            table.setWidget(j+1,4, edit);
-                            table.setWidget(j+1,5, delete);
-                            j++;
-                        }
-                    }
-                }).getTableInfo();
+                tableGenerator();
             }
         }).save(userComplaint);
     }
-//        testService.call(new RemoteCallback<ArrayList<String>>() {
-//            @Override
-//            public void callback(ArrayList<String> response) {
-//                table.setWidget(0,0, new Label ("Id"));
-//                table.setWidget(0,1, new Label ("Name"));
-//                table.setWidget(0,2, new Label ("Email"));
-//                table.setWidget(0,3, new Label("Complaint"));
-//                table.setWidget(i,1, new Label(response.get(0)));
-//                table.setWidget(i,2, new Label(response.get(1)));
-//                table.setWidget(i,3, new Label(response.get(2)));
-//                i++;
-//            }
-//        }).test(name.getText(), email.getText(), text.getText());
-//    }
+
+    private void tableGenerator() {
+        testService.call(new RemoteCallback<List<UserComplaint>>() {
+            @Override
+            public void callback(List<UserComplaint> userComplaints) {
+                table.setWidget(0,0, new Label("Id"));
+                table.setWidget(0,1, new Label("Name"));
+                table.setWidget(0,2, new Label("Email"));
+                table.setWidget(0,3, new Label("Complaint"));
+                int j = 0;
+                for (final UserComplaint complaint : userComplaints) {
+                    Button edit = new Button("Edit");
+                    edit.addClickHandler(new ClickHandler() {
+                        @Override
+                        public void onClick(ClickEvent clickEvent) {
+                            complaint.setName(name.getText());
+                            complaint.setEmail(email.getText());
+                            complaint.setText(text.getText());
+                            testService.call().update(complaint.getId(),complaint);
+                            table.clear();
+                            tableGenerator();
+                        }
+                    });
+                    Button delete = new Button("Delete");
+                    delete.addClickHandler(new ClickHandler() {
+                        @Override
+                        public void onClick(ClickEvent clickEvent) {
+                            testService.call().delete(complaint.getId());
+                            table.clear();
+                            tableGenerator();
+                        }
+                    });
+                    table.setWidget(j + 1, 0, new Label(complaint.getId().toString()));
+                    table.setWidget(j+1,1, new Label(complaint.getName()));
+                    table.setWidget(j+1,2, new Label(complaint.getEmail()));
+                    table.setWidget(j+1,3, new Label(complaint.getText()));
+                    table.setWidget(j+1,4, edit);
+                    table.setWidget(j+1,5, delete);
+                    j++;
+                }
+            }
+        }).getTableInfo();
+    }
+
 
     /**
      * This method is registered as an event handler for click events on the
