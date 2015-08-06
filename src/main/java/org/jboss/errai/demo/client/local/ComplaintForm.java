@@ -8,7 +8,8 @@ import javax.inject.Inject;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.jboss.errai.demo.client.shared.model.UserComplaint;
-import org.jboss.errai.demo.client.shared.service.TestService;
+import org.jboss.errai.demo.client.shared.service.UserComplaintService;
+import org.jboss.errai.enterprise.client.jaxrs.api.RestClient;
 import org.jboss.errai.ui.client.widget.ValueImage;
 import org.jboss.errai.ui.nav.client.local.DefaultPage;
 import org.jboss.errai.ui.nav.client.local.Page;
@@ -54,7 +55,6 @@ public class ComplaintForm extends Composite {
     @Inject
     @DataField
     private TextBox name;
-    //Hola
 
     @Inject
     @DataField
@@ -77,10 +77,12 @@ public class ComplaintForm extends Composite {
     private Button submit;
 
     @Inject
-    private Caller<TestService> testService;
+    private Caller<UserComplaintService> testService;
 
     @PostConstruct
     public void init() {
+        // RestClient.setApplicationRoot("http://10.15.16.207:8080/errai-tutorial/rest");
+        RestClient.setApplicationRoot("rest");
         clear();
     }
 

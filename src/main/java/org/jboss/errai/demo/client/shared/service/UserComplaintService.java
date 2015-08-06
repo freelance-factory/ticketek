@@ -13,7 +13,7 @@ import org.jboss.errai.demo.client.shared.model.UserComplaint;
  * request or serialization logic.
  */
 @Remote
-public interface TestService {
+public interface UserComplaintService {
     public List<UserComplaint> getTableInfo();
     public void save(UserComplaint userComplaint);
     public void delete(Long id);
