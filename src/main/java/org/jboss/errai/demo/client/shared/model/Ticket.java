@@ -11,7 +11,7 @@ public class Ticket {
 
     private String description;
     private Status status;
-    private String asignee;
+    private String assignee;
 
     public Long getId() {
         return id;
@@ -38,10 +38,10 @@ public class Ticket {
     }
 
     public String getAsignee() {
-        return asignee;
+        return assignee;
     }
 
     public void setAsignee(String asignee) {
-        this.asignee = asignee;
+        this.assignee = assignee;
     }
 }
