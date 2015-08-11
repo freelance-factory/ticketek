@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jboss.errai:errai-ioc:3.2.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/errai/errai-ioc/3.2.0-SNAPSHOT/errai-ioc-3.2.0-20150728.210513-85.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/errai/errai-ioc/3.2.0-SNAPSHOT/errai-ioc-3.2.0-20150728.210513-85-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/errai/errai-ioc/3.2.0-SNAPSHOT/errai-ioc-3.2.0-20150728.210513-85-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jboss.errai:errai-jpa-client:3.2.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/errai/errai-jpa-client/3.2.0-SNAPSHOT/errai-jpa-client-3.2.0-20150728.213654-82.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/errai/errai-jpa-client/3.2.0-SNAPSHOT/errai-jpa-client-3.2.0-20150728.213654-82-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/errai/errai-jpa-client/3.2.0-SNAPSHOT/errai-jpa-client-3.2.0-20150728.213654-82-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

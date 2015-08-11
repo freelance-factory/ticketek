@@ -1,0 +1,46 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ticketek:war exploded">
+    <output-path>$PROJECT_DIR$/target/ticketek</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ticketek" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-javaee-all/3.2.0-SNAPSHOT/errai-javaee-all-3.2.0-20150728.213915-81.jar" output-file-name="errai-javaee-all-3.2.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-bus/3.2.0-SNAPSHOT/errai-bus-3.2.0-20150728.210124-84.jar" output-file-name="errai-bus-3.2.0-SNAPSHOT.jar" />
+          <element id="library" level="project" name="Maven: com.google.inject:guice:3.0" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.mvel:mvel2:2.1.7.Final" />
+          <element id="library" level="project" name="Maven: org.jgroups:jgroups:3.2.13.Final" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-ioc/3.2.0-SNAPSHOT/errai-ioc-3.2.0-20150728.210513-85.jar" output-file-name="errai-ioc-3.2.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-cdi-client/3.2.0-SNAPSHOT/errai-cdi-client-3.2.0-20150728.210824-83.jar" output-file-name="errai-cdi-client-3.2.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-ioc-bus-support/3.2.0-SNAPSHOT/errai-ioc-bus-support-3.2.0-20150728.210807-83.jar" output-file-name="errai-ioc-bus-support-3.2.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-jpa-datasync/3.2.0-SNAPSHOT/errai-jpa-datasync-3.2.0-20150728.213823-81.jar" output-file-name="errai-jpa-datasync-3.2.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-jaxrs-provider/3.2.0-SNAPSHOT/errai-jaxrs-provider-3.2.0-20150728.212125-82.jar" output-file-name="errai-jaxrs-provider-3.2.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-marshalling/3.2.0-SNAPSHOT/errai-marshalling-3.2.0-20150728.204905-86.jar" output-file-name="errai-marshalling-3.2.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-validation/3.2.0-SNAPSHOT/errai-validation-3.2.0-20150728.213421-82.jar" output-file-name="errai-validation-3.2.0-SNAPSHOT.jar" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.2" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.2" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-weld-integration/3.2.0-SNAPSHOT/errai-weld-integration-3.2.0-20150728.212111-84.jar" output-file-name="errai-weld-integration-3.2.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-config/3.2.0-SNAPSHOT/errai-config-3.2.0-20150728.204847-95.jar" output-file-name="errai-config-3.2.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-common/3.2.0-SNAPSHOT/errai-common-3.2.0-20150728.204751-88.jar" output-file-name="errai-common-3.2.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/reflections/reflections/3.2.0-SNAPSHOT/reflections-3.2.0-20150728.204734-89.jar" output-file-name="reflections-3.2.0-SNAPSHOT.jar" />
+          <element id="library" level="project" name="Maven: de.benediktmeurer.gwt-slf4j:gwt-slf4j:0.0.2" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.1" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-jboss-as-support/3.2.0-SNAPSHOT/errai-jboss-as-support-3.2.0-20150728.214503-80.jar" output-file-name="errai-jboss-as-support-3.2.0-SNAPSHOT.jar" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:17.0" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.19.0-GA" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/errai/errai-codegen/3.2.0-SNAPSHOT/errai-codegen-3.2.0-20150728.204818-91.jar" output-file-name="errai-codegen-3.2.0-SNAPSHOT.jar" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/ticketek/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="ticketek/web/Web" />
+      <element id="gwt-compiler-output" facet="ticketek/gwt/GWT" />
+    </root>
+  </artifact>
+</component>
