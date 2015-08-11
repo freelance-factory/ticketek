@@ -44,6 +44,13 @@
 
     <dependency>
       <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-navigation</artifactId>
+      <version>${errai.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
       <artifactId>errai-javaee-all</artifactId>
     </dependency>
     
@@ -81,6 +88,11 @@
     <groupId>org.jboss.errai</groupId>
     <artifactId>errai-weld-integration</artifactId>    
   </dependency>
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-common</artifactId>
+      <version>3.2.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <repositories>
@@ -165,7 +177,6 @@
           <server>org.jboss.errai.cdi.server.gwt.EmbeddedWildFlyLauncher</server>
           <disableCastChecking>true</disableCastChecking>
           <runTarget>${errai.dev.context}/index.html</runTarget>
-          <soyc>false</soyc>
           <hostedWebapp>src/main/webapp</hostedWebapp>
           <strict>true</strict>
         </configuration>
