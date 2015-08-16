@@ -1,10 +1,13 @@
 package org.jboss.errai.demo.client.local;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.*;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
+import org.jboss.errai.demo.client.shared.model.Status;
 import org.jboss.errai.demo.client.shared.model.Ticket;
 import org.jboss.errai.demo.client.shared.service.TicketService;
 import org.jboss.errai.ui.nav.client.local.Page;
@@ -14,29 +17,24 @@ import org.jboss.errai.ui.shared.api.annotations.EventHandler;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 
 @Page
 @Templated("FormPage.html#app-template")
 public class FormPage extends Composite {
 
-    private Ticket ticket;
+    public static Ticket ticket;
 
     @Inject
     @DataField
-    private TextArea description;
+    public TextArea description;
 
     @Inject
     @DataField
-    private TextBox assignee;
+    public TextBox assignee;
 
     @Inject
     @DataField
-    private ListBox status;
+    public ListBox listBox;
 
     @Inject
     @DataField
@@ -50,40 +48,57 @@ public class FormPage extends Composite {
     private Caller<TicketService> ticketService;
 
     @Inject
-    private TransitionTo<TablePage> submitButtonClicked;
+    private TransitionTo<TablePage> returnToTablePage;
 
-    private ListBox fillListBox(ListBox listBox) {
-        listBox.addItem("Open");
-        listBox.addItem("In Progress");
-        listBox.addItem("Closed");
-        return listBox;
+    @Inject
+    private TransitionTo<MainPage> returnToMainPage;
+
+    @PostConstruct
+    private void init() {
+        createListbox();
     }
 
     @EventHandler("submitTicket")
-    private void onSubmit(ClickEvent e){
+    private void onSubmit(ClickEvent e) {
+//        createTicketFromWidgets();
+//        System.out.println(ticket.toString());
         boolean isNew = ticket.getId() == null;
-        if(isNew){
-            create();
-            submitButtonClicked.go();
+        if (isNew) {
+            save();
         } else {
 //            update();
-            Window.alert("Hola");
-            submitButtonClicked.go();
         }
+        returnToTablePage.go();
     }
 
-    @EventHandler("cancelTicket")
-    private void onCancel(ClickEvent e){
-        description.setText("");
-        assignee.setText("");
-    }
+//    @EventHandler("cancelTicket")
+//    private void onCancel(ClickEvent f){
+//        returnToMainPage.go();
+//        description.setText("");
+//        assignee.setText("");
+//        listBox.setSelectedIndex(0);
+//        if(ticket.getId()==null) {
+//        } else {
+//            returnToTablePage.go();
+//    }
 
-    private void create() {
+    private void save() {
         ticketService.call(new RemoteCallback<Void>(){
             @Override
             public void callback(Void aVoid) {
             }
-        }).create(ticket);
+        }).save(ticket);
     }
 
+    private void createTicketFromWidgets() {
+        ticket.setAssignee(assignee.getText());
+        ticket.setDescription(description.getText());
+//        ticket.setStatus(Status.CLOSED);
+    }
+
+    private void createListbox() {
+        listBox.addItem(String.valueOf(Status.CLOSED));
+        listBox.addItem(String.valueOf(Status.IN_PROGRESS));
+        listBox.addItem(String.valueOf(Status.OPEN));
+    }
 }

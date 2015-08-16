@@ -8,15 +8,15 @@
 <body>
     <div id="app-template" class="container static">
         <div class="app-inside">
-            <textarea id="description" placeholder="Description"></textarea>
-            <select id="status" placeholder="Status">
-                <option>Open</option>
-                <option>In Progress</option>
-                <option>Closed</option>
-            </select>
-            <input id="assignee" placeholder="Assignee"/>
-            <button id="submitTicket">Submit</button>
-            <button id="cancelTicket">Cancel</button>
+            <form onsubmit="false">
+                <fieldset>
+                    <textarea id="description" type="text" name="text" placeholder="Description"></textarea>
+                    <select id="listBox"></select>
+                    <input id="assignee" type="text" name="text" placeholder="Assignee"/>
+                    <button id="submitTicket">Submit</button>
+                    <button id="cancelTicket">Cancel</button>
+                </fieldset>
+            </form>
         </div>
     </div>
 </body>

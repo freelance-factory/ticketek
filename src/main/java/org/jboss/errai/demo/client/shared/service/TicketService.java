@@ -3,9 +3,12 @@ package org.jboss.errai.demo.client.shared.service;
 import org.jboss.errai.bus.server.annotations.Remote;
 import org.jboss.errai.demo.client.shared.model.Ticket;
 
+import java.util.List;
+
 @Remote
 public interface TicketService {
 
-    public void create(Ticket ticket);
-
+    public List<Ticket> getTableInfo();
+    public void save(Ticket ticket);
+    public void delete(Long id);
 }

@@ -1,9 +1,14 @@
 package org.jboss.errai.demo.client.shared.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.jboss.errai.common.client.api.annotations.Portable;
+import org.jboss.errai.databinding.client.api.Bindable;
 
+import javax.persistence.*;
+
+@Entity
+@Bindable
+@Portable
+@NamedQueries({ @NamedQuery(name = "allTickets", query = "SELECT c FROM Ticket c ORDER BY c.id") })
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,11 +42,47 @@ public class Ticket {
         this.status = status;
     }
 
-    public String getAsignee() {
+    public String getAssignee() {
         return assignee;
     }
 
-    public void setAsignee(String asignee) {
+    public void setAssignee(String assignee) {
         this.assignee = assignee;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Ticket other = (Ticket) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", assignee='" + assignee + '\'' +
+                '}';
     }
 }

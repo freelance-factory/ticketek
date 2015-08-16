@@ -6,6 +6,7 @@ import org.jboss.errai.demo.client.shared.service.TicketService;
 import org.jboss.errai.demo.server.dao.TicketsDao;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class TicketServiceImpl implements TicketService{
@@ -14,7 +15,17 @@ public class TicketServiceImpl implements TicketService{
     private TicketsDao ticketsDao;
 
     @Override
-    public void create(Ticket ticket) {
+    public List<Ticket> getTableInfo() {
+        return ticketsDao.getAll();
+    }
+
+    @Override
+    public void save(Ticket ticket) {
         ticketsDao.create(ticket);
+    }
+
+    @Override
+    public void delete(Long id) {
+        ticketsDao.delete(id);
     }
 }
