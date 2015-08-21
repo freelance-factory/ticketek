@@ -31,4 +31,9 @@ public class TicketsDao {
         Ticket uc = em.find(Ticket.class, id);
         em.remove(uc);
     }
+
+    public void update(Long id, Ticket entity) {
+        entity.setId(id);
+        entity = em.merge(entity);
+    }
 }

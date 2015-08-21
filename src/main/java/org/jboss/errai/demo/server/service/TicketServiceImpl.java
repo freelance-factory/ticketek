@@ -28,4 +28,11 @@ public class TicketServiceImpl implements TicketService{
     public void delete(Long id) {
         ticketsDao.delete(id);
     }
+
+    @Override
+    public void update(Long id, Ticket ticket) {
+        ticketsDao.update(id,ticket);
+    }
+
+
 }

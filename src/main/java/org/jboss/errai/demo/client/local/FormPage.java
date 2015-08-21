@@ -29,6 +29,8 @@ public class FormPage extends Composite {
 
     private Ticket ticket = new Ticket();
 
+//    private long id;
+
     @Inject
     @DataField
     public TextArea description;
@@ -61,24 +63,35 @@ public class FormPage extends Composite {
     @PostConstruct
     private void init() {
         createListbox();
-
     }
 
     @PageShowing
-    public void rowData(HistoryToken historyToken) {
-        System.out.println("Hola");
-        System.out.println(historyToken.getState().get("Test"));
+    public void bringTablePageData(HistoryToken historyToken) {
+//        System.out.println("Hola");
+//        System.out.println(historyToken.getState().get("Assignee"));
+        assignee.setText(String.valueOf(historyToken.getState().get("Assignee")).replace("[", "").replace("]", ""));
+        description.setText(String.valueOf(historyToken.getState().get("Description")).replace("[", "").replace("]", ""));
+        if(!String.valueOf(historyToken.getState().get("StatusIndex")).replace("[", "").replace("]", "").equals("")) {
+            listBox.setSelectedIndex(Integer.parseInt(String.valueOf(historyToken.getState().get("StatusIndex")).replace("[", "").replace("]", "")));
+        }
+        if(!String.valueOf(historyToken.getState().get("Id")).replace("[", "").replace("]", "").equals("")) {
+            ticket.setId(Long.parseLong(String.valueOf(historyToken.getState().get("Id")).replace("[", "").replace("]", "")));
+        }
+//        ticket.setId(Long.parseLong(String.valueOf(historyToken.getState().get("Id"))));
+//        ticket.setId(Long.valueOf(String.valueOf(historyToken.getState().get("Id"))));
     }
 
     @EventHandler("submitTicket")
     private void onSubmit(ClickEvent e) {
         createTicketFromWidgets();
-        System.out.println(ticket.toString());
+//        System.out.println(ticket.toString());
+//        ticket.setId(id);
         boolean isNew = ticket.getId() == null;
         if (isNew) {
             save();
         } else {
-//            update();
+            update();
+            System.out.println(ticket.getAssignee() + ticket.getDescription() + ticket.getStatus());
         }
         returnToTablePage.go();
     }
@@ -86,13 +99,28 @@ public class FormPage extends Composite {
     @EventHandler("cancelTicket")
     private void onCancel(ClickEvent f){
         returnToMainPage.go();
+        cleanDatafields();
+        if(ticket.getId()!= null) {
+            returnToTablePage.go();
+        }
+    }
+
+    private void cleanDatafields() {
         description.setText("");
         assignee.setText("");
         listBox.setSelectedIndex(0);
-        if(ticket.getId()==null) {
-        } else {
-            returnToTablePage.go();
-        }
+    }
+
+    private void createListbox() {
+        listBox.addItem(String.valueOf(Status.CLOSED));
+        listBox.addItem(String.valueOf(Status.IN_PROGRESS));
+        listBox.addItem(String.valueOf(Status.OPEN));
+    }
+
+    private void createTicketFromWidgets() {
+        ticket.setAssignee(assignee.getText());
+        ticket.setDescription(description.getText());
+        ticket.setStatus(Status.valueOf(listBox.getSelectedItemText()));
     }
 
     private void save() {
@@ -103,15 +131,11 @@ public class FormPage extends Composite {
         }).save(ticket);
     }
 
-    private void createTicketFromWidgets() {
-        ticket.setAssignee(assignee.getText());
-        ticket.setDescription(description.getText());
-        ticket.setStatus(Status.valueOf(listBox.getSelectedItemText()));
-    }
-
-    private void createListbox() {
-        listBox.addItem(String.valueOf(Status.CLOSED));
-        listBox.addItem(String.valueOf(Status.IN_PROGRESS));
-        listBox.addItem(String.valueOf(Status.OPEN));
+    private void update() {
+        ticketService.call(new RemoteCallback<Void>(){
+            @Override
+            public void callback(Void aVoid) {
+            }
+        }).update(ticket.getId(), ticket);
     }
 }

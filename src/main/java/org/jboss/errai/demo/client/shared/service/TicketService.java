@@ -11,4 +11,6 @@ public interface TicketService {
     public List<Ticket> getTableInfo();
     public void save(Ticket ticket);
     public void delete(Long id);
+    public void update(Long id, Ticket ticket);
+
 }

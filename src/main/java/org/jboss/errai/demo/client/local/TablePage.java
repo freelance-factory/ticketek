@@ -65,7 +65,11 @@ public class TablePage extends Composite{
                         @Override
                         public void onClick(ClickEvent clickEvent) {
                             Multimap<String,String> multimap = HashMultimap.create();
-                            multimap.put("Test","Lalala");
+                            multimap.put("Assignee",ticket.getAssignee());
+                            multimap.put("Description", ticket.getDescription());
+                            int statusIndex = getListboxIndex(ticket);
+                            multimap.put("StatusIndex", String.valueOf(statusIndex));
+                            multimap.put("Id", String.valueOf(ticket.getId()));
                             addNewButtonClicked.go(multimap);
 //                            FormPage.ticket.setId(ticket.getId());
 //                            FormPage.ticket.setStatus(ticket.getStatus());
@@ -87,6 +91,16 @@ public class TablePage extends Composite{
                 }
             }
         }).getTableInfo();
+    }
+
+    private int getListboxIndex(Ticket ticket) {
+        if(String.valueOf(ticket.getStatus()).equals("CLOSED")) {
+            return 0;
+        } else if (String.valueOf(ticket.getStatus()).equals("OPEN")) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 
     private void buildRows(int j, Ticket ticket, Button edit, Button delete) {
