@@ -64,17 +64,13 @@ public class TablePage extends Composite{
                     edit.addClickHandler(new ClickHandler() {
                         @Override
                         public void onClick(ClickEvent clickEvent) {
+                            int statusIndex = getListboxIndex(ticket);
                             Multimap<String,String> multimap = HashMultimap.create();
                             multimap.put("Assignee",ticket.getAssignee());
                             multimap.put("Description", ticket.getDescription());
-                            int statusIndex = getListboxIndex(ticket);
                             multimap.put("StatusIndex", String.valueOf(statusIndex));
                             multimap.put("Id", String.valueOf(ticket.getId()));
                             addNewButtonClicked.go(multimap);
-//                            FormPage.ticket.setId(ticket.getId());
-//                            FormPage.ticket.setStatus(ticket.getStatus());
-//                            FormPage.ticket.setDescription(ticket.getDescription());
-//                            FormPage.ticket.setAssignee(ticket.getAssignee());
                         }
                     });
                     Button delete = new Button("Delete");

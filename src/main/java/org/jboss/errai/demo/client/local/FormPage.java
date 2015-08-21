@@ -29,8 +29,6 @@ public class FormPage extends Composite {
 
     private Ticket ticket = new Ticket();
 
-//    private long id;
-
     @Inject
     @DataField
     public TextArea description;
@@ -67,8 +65,6 @@ public class FormPage extends Composite {
 
     @PageShowing
     public void bringTablePageData(HistoryToken historyToken) {
-//        System.out.println("Hola");
-//        System.out.println(historyToken.getState().get("Assignee"));
         assignee.setText(String.valueOf(historyToken.getState().get("Assignee")).replace("[", "").replace("]", ""));
         description.setText(String.valueOf(historyToken.getState().get("Description")).replace("[", "").replace("]", ""));
         if(!String.valueOf(historyToken.getState().get("StatusIndex")).replace("[", "").replace("]", "").equals("")) {
@@ -77,21 +73,16 @@ public class FormPage extends Composite {
         if(!String.valueOf(historyToken.getState().get("Id")).replace("[", "").replace("]", "").equals("")) {
             ticket.setId(Long.parseLong(String.valueOf(historyToken.getState().get("Id")).replace("[", "").replace("]", "")));
         }
-//        ticket.setId(Long.parseLong(String.valueOf(historyToken.getState().get("Id"))));
-//        ticket.setId(Long.valueOf(String.valueOf(historyToken.getState().get("Id"))));
     }
 
     @EventHandler("submitTicket")
     private void onSubmit(ClickEvent e) {
         createTicketFromWidgets();
-//        System.out.println(ticket.toString());
-//        ticket.setId(id);
         boolean isNew = ticket.getId() == null;
         if (isNew) {
             save();
         } else {
             update();
-            System.out.println(ticket.getAssignee() + ticket.getDescription() + ticket.getStatus());
         }
         returnToTablePage.go();
     }
