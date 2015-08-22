@@ -73,7 +73,10 @@ public class FormPage extends Composite {
         description.setText(String.valueOf(historyToken.getState().get("Description")).replace("[", "").replace("]", ""));
         if(!String.valueOf(historyToken.getState().get("StatusIndex")).replace("[", "").replace("]", "").equals("")) {
             listBox.setSelectedIndex(Integer.parseInt(String.valueOf(historyToken.getState().get("StatusIndex")).replace("[", "").replace("]", "")));
+//            System.out.println("The Statusindex is " + Integer.parseInt(String.valueOf(historyToken.getState().get("StatusIndex")).replace("[", "").replace("]", "")));
+//            listBox.setName(String.valueOf(historyToken.getState().get("Status")).replace("[", "").replace("]", ""));
         }
+        System.out.println();
         if(!String.valueOf(historyToken.getState().get("Id")).replace("[", "").replace("]", "").equals("")) {
             ticket.setId(Long.parseLong(String.valueOf(historyToken.getState().get("Id")).replace("[", "").replace("]", "")));
         }
@@ -112,15 +115,15 @@ public class FormPage extends Composite {
     }
 
     private void createListbox() {
-        listBox.addItem(String.valueOf(Status.CLOSED));
-        listBox.addItem(String.valueOf(Status.IN_PROGRESS));
-        listBox.addItem(String.valueOf(Status.OPEN));
+        listBox.addItem(Status.CLOSED.toString(),Status.CLOSED.name());
+        listBox.addItem(Status.IN_PROGRESS.toString(),Status.IN_PROGRESS.name());
+        listBox.addItem(Status.OPEN.toString(),Status.OPEN.name());
     }
 
     private void createTicketFromWidgets() {
         ticket.setAssignee(assignee.getText());
         ticket.setDescription(description.getText());
-        ticket.setStatus(Status.valueOf(listBox.getSelectedItemText()));
+        ticket.setStatus(Status.valueOf(listBox.getSelectedValue()));
     }
 
     private void save() {

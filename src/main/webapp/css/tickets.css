@@ -1,0 +1,17 @@
+html {
+    background-image:url("../images/background.jpg");
+}
+
+* {
+    font-family: "Helvetica Neue", fantasy;
+    font-size: 14px;
+}
+
+#table {
+    color: #1a1a1a;
+    background-color: white;
+    border: black 1px solid;
+    border-radius: 5%;
+    width: 100%;
+}
+

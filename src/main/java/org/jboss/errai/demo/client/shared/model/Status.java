@@ -7,7 +7,12 @@ public enum Status {
 
     private String state;
 
-    private Status(String state) {
+    Status(String state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return state;
     }
 }
