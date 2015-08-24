@@ -5,13 +5,25 @@ html {
 * {
     font-family: "Helvetica Neue", fantasy;
     font-size: 14px;
+    border-radius: 10px;
 }
 
 #table {
     color: #1a1a1a;
     background-color: white;
     border: black 1px solid;
-    border-radius: 5%;
     width: 100%;
 }
 
+#description {
+    width: 60%;
+    display: block;
+    align-content: center;
+}
+
+.app-inside {
+    align-content: center;
+    width: 1024px;
+    display: block;
+    
+}
